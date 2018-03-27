@@ -179,9 +179,7 @@ func (p Message) String() string {
 	if p.MsgIdPlural != "" {
 		fmt.Fprintf(&buf, "msgid_plural %s", encodePoString(p.MsgIdPlural))
 	}
-	if p.MsgStr != "" {
-		fmt.Fprintf(&buf, "msgstr %s", encodePoString(p.MsgStr))
-	}
+	fmt.Fprintf(&buf, "msgstr %s", encodePoString(p.MsgStr))
 	for i := 0; i < len(p.MsgStrPlural); i++ {
 		fmt.Fprintf(&buf, "msgstr[%d] %s", i, encodePoString(p.MsgStrPlural[i]))
 	}
