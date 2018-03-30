@@ -226,7 +226,21 @@ func (p *Comment) GetFuzzy() bool {
 
 // SetFuzzy sets the fuzzy flag.
 func (p *Comment) SetFuzzy(fuzzy bool) {
-	//
+	if fuzzy == p.GetFuzzy() {
+		return
+	}
+	if fuzzy {
+		p.Flags = append(p.Flags, `fuzzy`)
+	} else {
+		var nflags []string
+		for _, s := range p.Flags {
+			if `fuzzy` == s {
+				continue
+			}
+			nflags = append(nflags, s)
+		}
+		p.Flags = nflags
+	}
 }
 
 // String returns the po format comment string.
